@@ -64,7 +64,7 @@ if(!isset($_SESSION['c_email'])){
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                        <label>Artista</label>
-                                                                <input type="text" class="form-control" onchange="albumfiller(this);" name="banda" placeholder="Nome do artista" value="<?php if(isset($_GET['artista'])){
+                                                                <input type="text" class="form-control" id="banda" name="banda" placeholder="Nome do artista" value="<?php if(isset($_GET['artista'])){
                                                                         echo $_GET['artista'];
                                                                         } ?>"><br>
                                                     </div>
@@ -72,36 +72,8 @@ if(!isset($_SESSION['c_email'])){
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Álbum</label>
-                                                        <?php
-                                                            if(isset($_GET['artista'])){
-                                                                $a_nome = $_GET['artista'];
-                                                                $busca_artista = "select * from artista where nome='$a_nome'";
-                                                                $run_busca = mysqli_query($con, $busca_artista);
-                                                                $artista_check = mysqli_num_rows($run_busca);
-                                                                if($artista_check > 0){
-                                                                    while($record=mysqli_fetch_array($run_busca)){
-                                                                        $id_artista = $record['id'];
-                                                                        $get_albuns="select * from discos where id_artista='$id_artista'";
-                                                                        $run_albuns = mysqli_query($con, $get_albuns);
-                                                                        $albuns_check = mysqli_num_rows($run_albuns);
-                                                                        if($albuns_check > 0 ){
-                                                                            echo "<select name='album' class='form-control'>";
-                                                                            while($record=mysqli_fetch_array($run_albuns)){
-                                                                                $nome = $record['nome'];
-                                                                                $id_disco = $record['id'];
-                                                                                echo "<option value=$id_disco>$nome</option>";
-                                                                            }
-                                                                            echo "</select>";
-                                                                        } else {
-                                                                            echo "<input type='text' class='form-control' value='Nenhum álbum cadastrado, cadastre ao lado' disabled>";
-                                                                        }
-                                                                    }
-                                                                } else {
-                                                                    echo"<input type='text' class='form-control' value='Artista não cadastrado, cadastre ao lado' disabled>";
-                                                                }
-                                                            } else {
-                                                                echo"<input type='text' class='form-control' value='Digite um artista' disabled>";
-                                                        } ?>
+                                                        <select name='album' id="album" class='form-control'></select>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1">
@@ -115,13 +87,17 @@ if(!isset($_SESSION['c_email'])){
                                                     <div class="col-md-11">
                                                         <div class="form-group">
                                                             <textarea name="content" id="editor"></textarea><br>
+                                                            <span class="caracteres"></span>
                                                             <script>
                                                                 ClassicEditor
                                                                     .create( document.querySelector( '#editor' ) )
                                                                     .catch( error => {
                                                                         console.error( error );
                                                                     } );
+
+
                                                             </script>
+
                                                         <button type="submit" name="submit" class="btn btn-info btn-fill pull-right">Enviar</button>
                                                     </div>
                                                 </div>
@@ -161,8 +137,62 @@ if(!isset($_SESSION['c_email'])){
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
 </html>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#banda").on("change", function() {
+            let value = $("#banda").val();
+            $.ajax({
+                type: 'GET',
+                url: '../rotten_music_final/retorna_discos.php?artista='+value,
+                dataType: "json",
+                success: function (data) {
+                    for (var i = 0; i < data.length; ){
+                        $('#album').append($('<option>', {
+                            value: data[i],
+                            text : data[i+1]
+                        }));
+                        i = i + 2;
+                    }
+                },
+                error: function(jqXHR,error, errorThrown) {
+                    if(jqXHR.status&&jqXHR.status==400){
+                        alert(jqXHR.responseText);
+                    }else{
+                        alert("Something went wrong");
+                    }
+                }
+            });
+        });
 
-<?php 
+        var number = 10
+
+        setTimeout(count, 1000)
+
+        function count () {
+            var value = $('.ck-content').text().length;
+            if (1500 - value > 0){
+                $('.caracteres').text("Caracteres faltantes: " + (1500 - value));
+            }else{
+                $('.caracteres').text("");
+            }
+            setTimeout(anothercount, 1000);
+        }
+
+        function anothercount () {
+            var value = $('.ck-content').text().length;
+            if (1500 - value > 0){
+                $('.caracteres').text("Caracteres faltantes: " + (1500 - value));
+            }else{
+                $('.caracteres').text("");
+            }
+            setTimeout(count, 1000);
+        }
+    });
+
+</script>
+
+
+<?php
     if(isset($_POST['submit'])){
         $id_usuario = retornaIdUsuario();
         $id_disco = $_POST['album'];
@@ -188,7 +218,7 @@ if(!isset($_SESSION['c_email'])){
 
         if ($id_disco != ''){
             $insere_resenha = "insert into post (id_usuario, id_disco, texto, nota) values ('$id_usuario','$id_disco','$textfile', '$nota')";
-            $run_usuario = mysqli_query($con, $insere_resenha);    
+            $run_usuario = mysqli_query($con, $insere_resenha);
             if($run_usuario){
                 echo"<script>alert('Resenha salva com sucesso')</script>";
                 echo"<script>window.open('resenha.php','_self')</script>";

@@ -69,7 +69,7 @@ if(!isset($_SESSION['c_email'])){
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                             	<div class="col-md-4">
                                                     <div class="form-group">
@@ -85,7 +85,7 @@ if(!isset($_SESSION['c_email'])){
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </form>
                                     </div>
                                 </div>
@@ -121,8 +121,18 @@ if(!isset($_SESSION['c_email'])){
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
 </html>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax({
+          url: "test.html",
+          context: document.body
+        }).done(function() {
+          $( this ).addClass( "done" );
+        });
+    });
+</script>
 
-<?php 
+<?php
 	if(isset($_POST['submit'])){
 		$a_nome = $_POST['a_nome'];
 		$a_nome_disco = $_POST['a_nome_disco'];
@@ -160,7 +170,7 @@ if(!isset($_SESSION['c_email'])){
 				echo"<script>alert('Disco já cadastrado!')</script>";
 				exit();
 			}
-			
+
 		} else {
 			echo"<script>alert('Artista não cadastrado!')</script>";
 			exit();

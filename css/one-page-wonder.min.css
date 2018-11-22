@@ -190,5 +190,60 @@ body{font-family:Lato}h1,h2,h3,h4,h5,h6{font-family:Catamaran;font-weight:800!im
   border-radius: 10px;
   overflow: hidden;
   padding: 42px 55px 45px 300px;
-  
+
+}
+
+/* 21/11 changes */
+
+.external-navbar{
+	background: #FFA534;
+    background: -moz-linear-gradient(top, #FFA534 0%, #ff5221 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFA534), color-stop(100%, #ff5221));
+    background: -webkit-linear-gradient(top, #FFA534 0%, #ff5221 100%);
+    background: -o-linear-gradient(top, #FFA534 0%, #ff5221 100%);
+    background: -ms-linear-gradient(top, #FFA534 0%, #ff5221 100%);
+    background: linear-gradient(to bottom, #FFA534 0%, #ff5221 100%);
+    background-size: 150% 150%;
+}
+
+.form-group-login{
+	margin: 10px;
+}
+
+.wrapper-login{
+	margin-top: 250px;
+}
+
+.wrapper-login-2{
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid rgba(0, 0, 0, 0.1)!important;
+	background-color: rgba(255, 255, 255, 0.96);
+	/*background: red;*/
+}
+
+.wrapper-register{
+	margin-top: 130px;
+}
+
+.wrapper-register-2{
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid rgba(0, 0, 0, 0.1)!important;
+	background-color: rgba(255, 255, 255, 0.96);
+	/*background: red;*/
+}
+
+.external-footer{
+	position:absolute;
+   	bottom:0;
+   	width:100%;
+}
+
+body {
+    background: rgba(203, 203, 210, 0.15);
+}
+
+header.masthead{
+	color: #FFA534!important;
 }

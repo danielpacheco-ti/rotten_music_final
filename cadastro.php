@@ -34,30 +34,28 @@ include("includes/db.php");
 	  	<?php
 	    include("commons/navbar.php")
 	    ?>
-		<section>	
-			<div class="container col-md-6" style="margin-top: 60px;">
-				<p><span class="wrap-contact100">
-						Cadastro
-				</span></p>
+		<section class="wrapper-register">
+			<div class="container col-md-6 wrapper-register-2" >
+				<p><h3>Cadastro</h3></p>
 				<form method="post" enctype="multipart/form-data">
-					<div class="form-group">
+					<div class="form-group form-group-login">
 				  		<label for="textInput">Nome</label>
 						<input class="form-control" type="text" value="" id="example-text-input" name="c_name" placeholder="Entre com seu nome" required>
 					</div>
-					<div class="form-group">
+					<div class="form-group form-group-login">
 				  		<label for="textInput">Usuário</label>
 						<input class="form-control" type="text" value="" id="example-text-input" name="c_user" placeholder="Entre com seu usuário" required>
 					</div>
-					<div class="form-group">
+					<div class="form-group form-group-login">
 				  		<label for="textInput">Foto</label>
 						<input class="form-control" type="file" name="c_image" required>
-					</div>		
-					<div class="form-group">
+					</div>
+					<div class="form-group form-group-login">
 						<label for="exampleInputEmail1">E-mail</label>
 						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="c_email" placeholder="Entre com seu e-mail" required>
 						<small id="emailHelp" class="form-text text-muted">Fique tranquilo, livre de spam.</small>
 				  	</div>
-					<div class="form-group">
+					<div class="form-group form-group-login">
 						<label for="exampleInputPassword1">Senha</label>
 						<input type="password" class="form-control" name="c_pass" id="exampleInputPassword1" placeholder="Insira sua senha" required>
 					</div>
@@ -66,7 +64,7 @@ include("includes/db.php");
 						<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1">
 						Li e concordo com os termos do site
 						</label>
-					</div>	
+					</div>
 					<div class="form-check">
 						<label class="form-check-label">
 						<input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios1" value="option2">
@@ -74,8 +72,8 @@ include("includes/db.php");
 						</label>
 					</div>
 					<br>
-					<button type="submit" class="btn btn-primary btn-block" name="submit">Cadastrar</button>
-				</form>	
+					<button type="submit" class="btn btn-info btn-block" name="submit">Cadastrar</button>
+				</form>
 			</div>
 		</section>
 		<!-- Footer -->
@@ -88,7 +86,7 @@ include("includes/db.php");
 	</body>
 </html>
 
-<?php 
+<?php
 	if(isset($_POST['submit'])){
 		$c_name = $_POST['c_name'];
 		$c_user = $_POST['c_user'];

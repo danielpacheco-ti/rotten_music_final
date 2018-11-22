@@ -35,22 +35,22 @@ include("includes/db.php");
 		<?php
 	    include("commons/navbar.php")
 	    ?>
-		<section>	
-			<div class="container col-md-6" style="margin-top: 60px;">
+		<section class="wrapper-login">
+			<div class="container col-md-6 wrapper-login-2">
 				<form method="post" enctype="multipart/form-data">
-					<div class="form-group">
-						<span class="hidden-xs">Login com</span>
-			  			<a href="#" class="btn btn-lg btn-block omb_btn-facebook">
+					<div class="form-group form-group-login">
+						<!-- <span class="hidden-xs">Login com</span> -->
+			  			<!-- <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
 			        		<i class="fa fa-facebook visible-xs"></i>
 			        		<span class="hidden-xs">Facebook</span>
-			        	</a>
-			        	<span class="hidden-xs">Ou</span>
-						<label for="textInput">entre com seu usuario</label>
+			        	</a> -->
+			        	<!-- <span class="hidden-xs">Ou</span> -->
+						<label for="textInput">Entre com seu usuario</label>
 			  			<br>
 			  			<i class="fa fa-user"></i>
 						<input class="form-control" type="text" name="c_user" id="example-text-input" placeholder="Entre com seu usuario">
 					</div>
-					<div class="form-group">
+					<div class="form-group form-group-login">
 						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 						<input  type="password" class="form-control" name="c_pass" placeholder="Insira sua senha">
 					</div>
@@ -62,13 +62,13 @@ include("includes/db.php");
 					<div class="form-group">
 						<p><a href="#">Forgot password?</a></p>
 					</div>
-				    <button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Login</button>
+				    <button class="btn btn-lg btn-info btn-block" type="submit" name="login">Login</button>
 				</form>
 	    	</div>
 	    </section>
     <!-- Footer -->
     <?php
-		include("commons/footer.php")
+		include("commons/footer_bottom.php")
 	?>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -76,7 +76,7 @@ include("includes/db.php");
 	</body>
 </html>
 
-<?php 
+<?php
 	if(isset($_POST['login'])){
 		$c_user = $_POST['c_user'];
 		$c_pass = $_POST['c_pass'];
@@ -88,13 +88,13 @@ include("includes/db.php");
 		if($usuario_check==0){
 			echo "<script>alert('Email ou senha inválidos')</script>";
 			exit();
-		} 
+		}
 		if($usuario_check == 1) {
 			$row_nome =mysqli_fetch_array($run_seleciona);
 			$nome = $row_nome['nome'];
 			$email = $row_nome['email'];
 			$_SESSION['c_email'] = $email;
-			
+
 			echo "<script>alert('Bem vindo $nome!')</script>";
 			echo "<script>window.open('user.php','_self')</script>";
 		}

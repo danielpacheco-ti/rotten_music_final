@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" style="background-color: #473945;">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top external-navbar">
   <div class="container">
     <a class="navbar-brand" href="home.php"><h3>ROTTEN<span> music</span></h3></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +15,7 @@
         <div class="input-group col-md-12 block" id="custom-search-input">
           <input type="text" name=banda_busca class="form-control input-lg" placeholder="Buscar resenha" />
           <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit" name="submit">
+            <button class="btn btn-info" type="submit" name="submit">
               <i class="fas fa-search" size="2"></i>
             </button>
           </span>
@@ -36,7 +36,7 @@
         <li class="nav-item">
           <?php
             if(isset($_SESSION['c_email'])){
-              echo('<a class="nav-link" href="logout.php">Logout</a> 
+              echo('<a class="nav-link" href="logout.php">Logout</a>
                 <a class="nav-link" href="user.php">Meu Perfil</a>');
             } else {
                 echo('<a class="nav-link" href="login.php">Login</a>');
@@ -50,7 +50,7 @@
 </form>
 </nav>
 
-<?php 
+<?php
     if(isset($_POST['submit']) && isset($_POST['banda_busca'])){
       if(isset($_SESSION['c_email'])){
         $string_busca = $_POST['banda_busca'];

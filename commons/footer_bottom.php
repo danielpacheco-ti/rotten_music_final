@@ -1,4 +1,4 @@
-<footer class="py-5 bg-black footer-distributed">
+<footer class="py-5 bg-black footer-distributed external-footer">
 	<div class="footer-left">
 		<h3>Rotten<span>Music</span></h3>
 		<p class="footer-links">
